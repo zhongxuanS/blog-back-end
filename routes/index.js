@@ -3,6 +3,8 @@ const router = express.Router();
 
 const logger = require('../lib/common/log4j');
 
+const Post = require('../lib/service/post');
+
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
