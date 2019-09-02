@@ -1,18 +1,15 @@
 const express = require('express');
 const router = express.Router();
 
-const logger = require('../lib/common/log4j');
-
-const Post = require('../lib/service/post');
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
+router.get('/', function (req, res) {
   res.render('index', { title: 'Express' });
 });
 
 
-router.post('/getCategory', function (req, res) {
-  logger.debug('test');
+router.get('/getCategory', function (req, res) {
+  Category.findAll();
   res.end();
 });
 

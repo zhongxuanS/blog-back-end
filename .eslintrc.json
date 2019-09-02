@@ -4,7 +4,10 @@
     "commonjs": true,
     "es6": true
   },
-  "extends": "eslint:recommended",
+  "extends": [
+    "eslint:recommended",
+    "plugin:node/recommended"
+  ],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly",
@@ -13,6 +16,34 @@
     "__dirname": true,
     "process": true,
     "Buffer": true
+  },
+  "rules": {
+    "node/file-extension-in-import": [
+      "error",
+      "always"
+    ],
+    "node/prefer-global/buffer": [
+      "error",
+      "always"
+    ],
+    "node/prefer-global/console": [
+      "error",
+      "always"
+    ],
+    "node/prefer-global/process": [
+      "error",
+      "always"
+    ],
+    "node/prefer-global/url-search-params": [
+      "error",
+      "always"
+    ],
+    "node/prefer-global/url": [
+      "error",
+      "always"
+    ],
+    "node/prefer-promises/dns": "error",
+    "node/prefer-promises/fs": "error"
   },
   "parserOptions": {
     "ecmaVersion": 2018
