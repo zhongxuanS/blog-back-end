@@ -3,7 +3,8 @@ const router = express.Router();
 
 const asyncWrapper = require('../lib/common/asyncWrapper');
 
-const categoryController = require('../lib/controller/category');
+const CategoryHandler = require('../lib/controller').CategoryHandler;
+const PostHandler = require('../lib/controller').PostHandler;
 
 /* GET home page. */
 router.get('/', function (req, res) {
@@ -11,8 +12,8 @@ router.get('/', function (req, res) {
 });
 
 
-router.get('/getCategory', asyncWrapper(categoryController.getAllCategory));
-router.get('');
+router.get('/getCategory', asyncWrapper(CategoryHandler.getAllCategory));
+router.post('/getTotalPost', asyncWrapper(PostHandler.getTotalPost));
 
 
 module.exports = router;
