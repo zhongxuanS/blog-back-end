@@ -12,7 +12,7 @@ router.get('/', function (req, res) {
 });
 
 
-router.get('/getCategory', asyncWrapper(CategoryHandler.getAllCategory));
+router.post('/getCategory', asyncWrapper(CategoryHandler.getCategory));
 router.post('/getTotalPost', asyncWrapper(PostHandler.getTotalPost));
 
 
