@@ -14,6 +14,7 @@ router.get('/', function (req, res) {
 
 router.post('/getCategory', asyncWrapper(CategoryHandler.getCategory));
 router.post('/getTotalPost', asyncWrapper(PostHandler.getTotalPost));
+router.post('/getAllArchiveByMonth', asyncWrapper(PostHandler.getAllArchiveByMonth));
 
 
 module.exports = router;
