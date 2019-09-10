@@ -6,19 +6,73 @@
 const app = require('../app');
 const debug = require('debug')('blog-back-end:server');
 const http = require('http');
+const https = require('https');
+const fs = require('fs');
+const path = require('path');
 
 /**
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(process.env.PORT || '5000');
+const port = normalizePort(process.env.PORT || '80');
 app.set('port', port);
+
+const sslport = normalizePort(process.env.SSLPORT || '443');
+app.set('sslport', sslport);
 
 /**
  * Create HTTP server.
  */
 
 const server = http.createServer(app);
+
+const keyPath = path.resolve(__dirname, '../ssl/privkey.pem');
+const certPath = path.resolve(__dirname, '../ssl/fullchain.pem');
+
+const options = {
+  key: fs.readFileSync(keyPath),
+  cert: fs.readFileSync(certPath)
+};
+
+
+const https_server = https.createServer(options, app);
+https_server.listen(sslport);
+https_server.on('error', onSSLError);
+https_server.on('listening', onListening_https);
+
+
+function onSSLError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  var bind = typeof port === 'string'
+    ? 'Pipe ' + sslport
+    : 'Port ' + sslport;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+
+function onListening_https() {
+  var addr = https_server.address();
+  var bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr.port;
+  debug('Listening on ' + bind);
+}
 
 /**
  * Listen on provided port, on all network interfaces.
