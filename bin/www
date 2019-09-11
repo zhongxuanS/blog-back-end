@@ -26,19 +26,20 @@ app.set('sslport', sslport);
 
 const server = http.createServer(app);
 
-const keyPath = path.resolve(__dirname, '../ssl/privkey.pem');
-const certPath = path.resolve(__dirname, '../ssl/fullchain.pem');
+if (process.env.NODE_ENV !== 'development') {
+  const keyPath = path.resolve(__dirname, '../ssl/privkey.pem');
+  const certPath = path.resolve(__dirname, '../ssl/fullchain.pem');
 
-const options = {
-  key: fs.readFileSync(keyPath),
-  cert: fs.readFileSync(certPath)
-};
+  const options = {
+    key: fs.readFileSync(keyPath),
+    cert: fs.readFileSync(certPath)
+  };
+  const https_server = https.createServer(options, app);
+  https_server.listen(sslport);
+  https_server.on('error', onSSLError);
+  https_server.on('listening', onListening_https);
+}
 
-
-const https_server = https.createServer(options, app);
-https_server.listen(sslport);
-https_server.on('error', onSSLError);
-https_server.on('listening', onListening_https);
 
 
 function onSSLError(error) {
