@@ -1,6 +1,6 @@
 
 const config = {
-  mysqlUrl: 'mysql://user:szx9231@localhost:3306/blog',
+  mysqlUrl: 'mysql://user:szx9231@10.206.174.25:3306/blog',
   pool: {
     max: 5,
     min: 9,

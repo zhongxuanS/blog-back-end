@@ -17,7 +17,9 @@
     "mysql2": "^1.6.5",
     "sequelize": "^5.17.0",
     "serve-favicon": "^2.5.0",
-    "underscore": "^1.9.1"
+    "showdown": "^1.9.0",
+    "underscore": "^1.9.1",
+    "xss": "^1.0.6"
   },
   "devDependencies": {
     "eslint": "^6.3.0",

@@ -21,7 +21,7 @@ router.post('/searchPost', asyncWrapper(PostHandler.searchPost));
 router.post('/updateNotepad', asyncWrapper(NotepadHandler.update));
 router.post('/getLatestNotepad', asyncWrapper(NotepadHandler.getLatestNotepad))
 
-router.post('/getPostDetail/:year/:month/:day/:title', asyncWrapper(PostHandler.getPostDetail));
+router.post('/getPostDetail', asyncWrapper(PostHandler.getPostDetail));
 
 
 module.exports = router;

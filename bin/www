@@ -25,6 +25,7 @@ app.set('sslport', sslport);
  */
 
 const server = http.createServer(app);
+let https_server;
 
 if (process.env.NODE_ENV !== 'development') {
   const keyPath = path.resolve(__dirname, '../ssl/privkey.pem');
@@ -34,7 +35,8 @@ if (process.env.NODE_ENV !== 'development') {
     key: fs.readFileSync(keyPath),
     cert: fs.readFileSync(certPath)
   };
-  const https_server = https.createServer(options, app);
+
+  https_server = https.createServer(options, app);
   https_server.listen(sslport);
   https_server.on('error', onSSLError);
   https_server.on('listening', onListening_https);
