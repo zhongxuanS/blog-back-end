@@ -22,6 +22,8 @@ router.post('/updateNotepad', asyncWrapper(NotepadHandler.update));
 router.post('/getLatestNotepad', asyncWrapper(NotepadHandler.getLatestNotepad))
 
 router.post('/getPostDetail', asyncWrapper(PostHandler.getPostDetail));
+router.post('/getPostDetailById', asyncWrapper(PostHandler.getPostDetailById));
+
 router.post('/upinsertPost', asyncWrapper(PostHandler.upinsertPost));
 
 
