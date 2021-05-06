@@ -19,7 +19,7 @@
     "sequelize": "^5.17.0",
     "serve-favicon": "^2.5.0",
     "showdown": "^1.9.0",
-    "underscore": "^1.9.1",
+    "underscore": "^1.12.1",
     "xss": "^1.0.6"
   },
   "devDependencies": {
